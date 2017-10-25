@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/bakendmodules/bakendmodules.iml" filepath="$PROJECT_DIR$/bakendmodules/bakendmodules.iml" />
+      <module fileurl="file://$PROJECT_DIR$/frontmodules/frontmodules.iml" filepath="$PROJECT_DIR$/frontmodules/frontmodules.iml" />
+      <module fileurl="file://$PROJECT_DIR$/imageservice.iml" filepath="$PROJECT_DIR$/imageservice.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="frontmodules:war">
+    <output-path>$PROJECT_DIR$/frontmodules/target</output-path>
+    <root id="archive" name="imageservice.war">
+      <element id="artifact" artifact-name="frontmodules:war exploded" />
+    </root>
+  </artifact>
+</component>
