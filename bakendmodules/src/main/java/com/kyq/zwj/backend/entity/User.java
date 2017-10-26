@@ -7,30 +7,27 @@ package com.kyq.zwj.backend.entity;
  *
  * @version 1.0
  * @author: kyq1024
- * @timestamp: 2017-10-24 14:21
+ * @timestamp: 2017-10-26 21:46
  */
 public class User {
-    private int id;
-    private String username;
+    private Integer id;
+    private String userName;
     private String password;
 
-    public User() {
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {

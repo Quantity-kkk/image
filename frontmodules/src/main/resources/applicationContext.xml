@@ -99,10 +99,10 @@
     </bean>
 
     <!-- 测试用户表 -->
-    <bean id="userDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.kyq.zwj.backend.modules.laneimagefile.dao.UserDao"></property>
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-    </bean>
+    <!--<bean id="userDao" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
+        <!--<property name="mapperInterface" value="com.kyq.zwj.backend.modules.laneimagefile.dao.UserDao"></property>-->
+        <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>-->
+    <!--</bean>-->
 
     <!-- 5. 使用声明式事务 -->
     <tx:annotation-driven transaction-manager="txManager" />

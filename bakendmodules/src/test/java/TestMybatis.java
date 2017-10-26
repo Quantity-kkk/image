@@ -1,10 +1,10 @@
-import com.kyq.zwj.backend.entity.User;
-import com.kyq.zwj.backend.modules.laneimagefile.dao.UserDao;
-import com.kyq.zwj.backend.util.UUIDUtil;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 /**
  * Description:
@@ -18,7 +18,16 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class TestMybatis {
 
     public static void main(String[] args) {
-        System.out.print(UUIDUtil.getUUID());
+//        System.out.print(UUIDUtil.getUUID());
+//        String name = "Pic_1_2_6300201_82_2_青A12345_0_1380390677774885489_20170905121212.jpg";
+//        String arr[] = name.split("_");
+//        System.out.println(arr.length);
+        SimpleDateFormat sf = new SimpleDateFormat("yyyyMMddHHmmss");
+        try {
+            System.out.println(sf.parse("20170905121212"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public void testSelect(){
@@ -34,35 +43,6 @@ public class TestMybatis {
     }
 
     public void testCommon(){
-        ApplicationContext ctx=null;
-        ctx=new ClassPathXmlApplicationContext("applicationContext.xml");
-        UserDao userDao=(UserDao) ctx.getBean("userDao");
 
-        User user=new User();
-        //添加两条数据
-        user.setId(1);
-        user.setUsername("Jessica");
-        user.setPassword("123");
-        userDao.addUser(user);
-        user.setId(2);
-        user.setUsername("Jessica2");
-        user.setPassword("123");
-        userDao.addUser(user);
-        System.out.println("添加成功");
-        //查询数据
-        user.setUsername("Jessica");
-        user.setPassword("123");
-        System.out.println(userDao.getUser(user).toString());
-        user.setUsername("Jessica2");
-        user.setPassword("123");
-        System.out.println(userDao.getUser(user).toString());
-        //修改数据
-        user.setId(2);
-        user.setPassword("802");
-        userDao.updateUser(user);
-        System.out.println("修改成功");
-        //删除数据
-        userDao.deleteUser(1);
-        System.out.println("删除成功");
     }
 }

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kyq.zwj.backend.modules.lanelogfile.dao.LaneLogFileManagerDao">
+
+    <select id="selectOne" parameterType="LaneLog" resultType="LaneLog">
+        SELECT * FROM lane_log_file_manager t WHERE 1=1
+        <if test="stationNo != '' and stationNo != null">
+            and t.station_no=#{stationNo}
+        </if>
+        <if test="laneNo != '' and laneNo != null">
+            and t.lane_no=#{laneNo}
+        </if>
+        <if test="opeDate != '' and opeDate != null">
+            and t.ope_date=#{opeDate}
+        </if>
+        <if test="softProFlag != '' and softProFlag != null">
+            and t.soft_pro_flag=#{softProFlag}
+        </if>
+        <if test="fileName != '' and fileName != null">
+            and t.file_name=#{fileName}
+        </if>
+        limit 0,1
+    </select>
+
+    <select id="selectList" parameterType="LaneLog" resultType="laneLogMap">
+        SELECT * FROM lane_log_file_manager t WHERE 1=1
+        <if test="stationNo != '' and stationNo != null">
+            and t.station_no=#{stationNo}
+        </if>
+        <if test="laneNo != '' and laneNo != null">
+            and t.lane_no=#{laneNo}
+        </if>
+        <if test="opeDate != '' and opeDate != null">
+            and t.ope_date=#{opeDate}
+        </if>
+        <if test="softProFlag != '' and softProFlag != null">
+            and t.soft_pro_flag=#{softProFlag}
+        </if>
+        <if test="fileName != '' and fileName != null">
+            and t.file_name=#{fileName}
+        </if>
+    </select>
+
+    <insert id="batchInsert" parameterType="List">
+        INSERT INTO lane_log_file_manager (
+        station_no,
+        lane_no,
+        ope_date,
+        soft_pro_flag,
+        file_name,
+        file_size,
+        fdfs_group_name,
+        fdfs_file_path,
+        back_up1,
+        back_up2,
+        back_up3,
+        back_up4,
+        back_up5
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator="," >
+            (
+            #{item.stationNo},
+            #{item.laneNo},
+            #{item.opeDate},
+            #{item.softProFlag},
+            #{item.fileName},
+            #{item.fileSize},
+            #{item.fdfsGroupName},
+            #{item.fdfsFilePath},
+            #{item.backUp1},
+            #{item.backUp2},
+            #{item.backUp3},
+            #{item.backUp4},
+            #{item.backUp5}
+            )
+        </foreach>
+    </insert>
+
+    <resultMap type="LaneLog" id="laneLogMap">
+        <result property="stationNo" column="station_no"/>
+        <result property="laneNo" column="lane_no"/>
+        <result property="opeTime" column="ope_time"/>
+        <result property="laneType" column="lane_type"/>
+        <result property="imageType" column="image_type"/>
+        <result property="fileName" column="file_name"/>
+        <result property="fileSize" column="file_size"/>
+        <result property="fdfsGroupName" column="fdfs_group_name"/>
+        <result property="fdfsFilePath" column="fdfs_file_path"/>
+        <result property="vehPlate" column="veh_plate"/>
+        <result property="vehiclePlateColor" column="vehicle_plate_color"/>
+        <result property="cardId" column="card_id"/>
+        <result property="backUp1" column="back_up1"/>
+        <result property="backUp2" column="back_up2"/>
+        <result property="backUp3" column="back_up3"/>
+        <result property="backUp4" column="back_up4"/>
+        <result property="backUp5" column="back_up4"/>
+    </resultMap>
+</mapper>

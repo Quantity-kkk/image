@@ -11,9 +11,15 @@
         <setting name="useColumnLabel" value="true" />
         <!-- 开启驼峰命名转换:Table{create_time} -> Entity{createTime} -->
         <setting name="mapUnderscoreToCamelCase" value="true" />
+
     </settings>
 
+    <typeAliases>
+        <typeAlias alias="LaneImage" type="com.kyq.zwj.backend.entity.LaneImageFileManager"/>
+        <typeAlias alias="LaneLog" type="com.kyq.zwj.backend.entity.LaneLogFileManager"/>
+    </typeAliases>
+
     <mappers>
-        <mapper resource="com/kyq/zwj/backend/modules/laneimagefile/dao/mapper/UserDao.xml"/>
+        <mapper resource="com/kyq/zwj/backend/modules/common/dao/CommonDao.xml"/>
     </mappers>
 </configuration>

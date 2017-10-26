@@ -32,6 +32,7 @@ public class GlobalExceptionHandler implements HandlerExceptionResolver {
         Map<String, Object> model = new HashMap<String, Object>();
         model.put("ex", ex);
         model.put("errorCode",errorCode);
+        ex.printStackTrace();
         //error log tracer
         logger.error(String.format("[errorCode:%s;errorMsg:%s]",errorCode,ex.getMessage()));
         ModelAndView modalView = new ModelAndView("../bizmodules/jsp/exception/error_page", model);

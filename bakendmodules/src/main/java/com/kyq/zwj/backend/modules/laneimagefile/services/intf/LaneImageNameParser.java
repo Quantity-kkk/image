@@ -1,6 +1,6 @@
 package com.kyq.zwj.backend.modules.laneimagefile.services.intf;
 
-import java.util.Map;
+import com.kyq.zwj.backend.entity.LaneImageFileManager;
 
 /**
  * Description:
@@ -9,8 +9,8 @@ import java.util.Map;
  *
  * @version 1.0
  * @author: kyq1024
- * @timestamp: 2017-10-24 17:16
+ * @timestamp: 2017-10-26 15:55
  */
-public interface LaneImageFileManger {
-    Map getFileData();
+public interface LaneImageNameParser {
+    LaneImageFileManager decodeFileParams(String fileName);
 }
