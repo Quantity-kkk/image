@@ -36,7 +36,7 @@ import java.util.Map;
 @RequestMapping("/lanelog")
 public class LaneLogFileController {
 
-    @Resource(name="laneimagefile-manager")
+    @Resource(name="laneilogfile-manager")
     LaneLogFileService laneLogFileService;
 
     private static final Logger logger = LoggerFactory.getLogger(LaneLogFileController.class);

@@ -5,8 +5,7 @@
        xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
-       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <aop:aspectj-autoproxy/>
 
@@ -24,9 +23,46 @@
         </property>
     </bean>
 
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <!--json转换器-->
+                <ref bean="mappingJacksonHttpMessageConverter" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="mappingJacksonHttpMessageConverter"
+          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name = "supportedMediaTypes">
+            <list>
+                <bean class="org.springframework.http.MediaType">
+                    <constructor-arg index="0" value="text"/>
+                    <constructor-arg index="1" value="plain"/>
+                    <constructor-arg index="2" value="UTF-8"/>
+                </bean>
+                <bean class="org.springframework.http.MediaType">
+                    <constructor-arg index="0" value="*"/>
+                    <constructor-arg index="1" value="*"/>
+                    <constructor-arg index="2" value="UTF-8"/>
+                </bean>
+                <bean class="org.springframework.http.MediaType">
+                    <constructor-arg index="0" value="text"/>
+                    <constructor-arg index="1" value="*"/>
+                    <constructor-arg index="2" value="UTF-8"/>
+                </bean>
+                <bean class="org.springframework.http.MediaType">
+                    <constructor-arg index="0" value="application"/>
+                    <constructor-arg index="1" value="json"/>
+                    <constructor-arg index="2" value="UTF-8"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
     <!-- 1.配置 Hikari 数据源 -->
     <bean id="dataSourceHikari" class="com.zaxxer.hikari.HikariDataSource"  destroy-method="close">
-        <!-- <property name="driverClassName" value="${db.driverClass}" /> --> <!-- 无需指定，除非系统无法自动识别 -->
+         <property name="driverClassName" value="${jdbc.driver}" />
         <property name="jdbcUrl" value="${jdbc.url}"/>
         <property name="username" value="${jdbc.username}" />
         <property name="password" value="${jdbc.password}" />
@@ -48,7 +84,7 @@
         <!-- 配置MyBaties全局配置文件:mybatis-config.xml -->
         <property name="configLocation" value="classpath:mybatis-config.xml" />
         <!-- 扫描entity包 使用别名 -->
-        <!--<property name="typeAliasesPackage" value="com.atuigu.spring_mybatis2.domain"/>-->
+        <property name="typeAliasesPackage" value="com.atuigu.spring_mybatis2.domain"/>
         <!-- 扫描sql配置文件:mapper需要的xml文件 -->
     </bean>
     <!--3. mybatis自动扫描加载Sql映射文件 : MapperScannerConfigurer sqlSessionFactory / basePackage-->
@@ -70,4 +106,7 @@
 
     <!-- 5. 使用声明式事务 -->
     <tx:annotation-driven transaction-manager="txManager" />
+
+    <!-- 配置异常处理器 -->
+    <bean id="exceptionHandler" class="com.kyq.zwj.backend.exception.handler.GlobalExceptionHandler"/>
 </beans>
