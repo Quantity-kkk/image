@@ -4,7 +4,7 @@
 
 <mapper namespace="com.kyq.zwj.backend.modules.laneimagefile.dao.LaneImageFileManagerDao">
 
-    <select id="selectOne" parameterType="LaneImage" resultMap="LaneImage">
+    <select id="selectOne" parameterType="LaneImage" resultType="LaneImage">
         SELECT * FROM lane_image_file_manager t WHERE 1=1
         <if test="stationNo != '' and stationNo != null">
             and t.station_no=#{stationNo}

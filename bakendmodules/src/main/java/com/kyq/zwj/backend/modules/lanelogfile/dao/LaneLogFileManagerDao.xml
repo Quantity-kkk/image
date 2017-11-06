@@ -4,7 +4,7 @@
 
 <mapper namespace="com.kyq.zwj.backend.modules.lanelogfile.dao.LaneLogFileManagerDao">
 
-    <select id="selectOne" parameterType="LaneLog" resultMap="LaneLog">
+    <select id="selectOne" parameterType="LaneLog" resultType="LaneLog">
         SELECT * FROM lane_log_file_manager t WHERE 1=1
         <if test="stationNo != '' and stationNo != null">
             and t.station_no=#{stationNo}
